@@ -152,7 +152,8 @@ h1 {
     position: fixed;
     right: 0;
     top: 0px;
-    background: $blue;
+    /*background: $blue;*/
+       background: linear-gradient(to left, #1c79c0, #0389ff, #0dd3ff);
     z-index: 999;
 }
 .topbar .topbar-left {
