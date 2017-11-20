@@ -1,0 +1,295 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ADMIN- PANEL</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="thirdParty/font-awesome/css/font-awesome.css">
+		<script src="thirdParty/jquery-1.11.4.min.js"></script>
+		<script type="text/javascript" src="thirdParty/Chart.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+		 <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+		 
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,700i,900i" rel="stylesheet">
+	<!--[if IE]>
+	<link rel="stylesheet" type="text/css" href="ie.css" />
+<![endif]-->
+	</head>
+	
+	<body>
+		<div id="outer-wrapper"><!--outer-wrapper strat-->
+			<div id="inner-wrapper" style="background: red;"><!--inner-wrapper start-->
+				<!-- <img src="img/2.jpg" width="100%" /> -->
+				<div class="topbar">
+					<div class="topbar-left">
+                    	<a href="index.html" ><span class="logo">Simplest</span></a>
+                    	<span id="hamburger"><a  id="nav-toggle" href="#" title="Navigation"><span></span></a></span>
+               		 </div>
+               		 <div class="overview">
+               		 	<h4 class="page-title">Overview</h4>
+               		 </div>
+               		 <div class="nav-right">
+               		 	<ul>
+               		 		<li data-aos="zoom-out-up"><a><i class="fa fa-pie-chart" aria-hidden="true"></i></a></li>
+               		 		<li data-aos="zoom-out-down"><a><i class="fa fa-share" aria-hidden="true"></i></a></li>
+               		 		<li data-aos="zoom-out-up"><a><i class="fa fa-bell" aria-hidden="true"></i></a></li>
+               		 		<li data-aos="zoom-out-down"><a><i class="fa fa-search" aria-hidden="true"></i></a></li>
+               		 		<li data-aos="zoom-out-up"><a><i class="fa fa-cog" aria-hidden="true"></i></a></li>
+               		 	</ul>
+               		 </div>
+					<!-- <span id="hamburger">
+						<a  id="nav-toggle" href="#" title="Navigation"><span></span></a>
+					</span>
+					<div><h3>Global portal on product recalls</h3></div> -->
+				</div>
+				<div class="aside">
+					<ul>
+						<li data-aos="zoom-in"><a href=" "><i class="fa fa-user" aria-hidden="true"></i><span>Profile</span></a></li>
+						<li data-aos="zoom-in"><a href=" "><i class="fa fa-envelope" aria-hidden="true"></i><span>Email</span></a></li>
+						<li data-aos="zoom-in"><a href=" "><i class="fa fa-medium" aria-hidden="true"></i><span>Docs</span></a></li>
+						<li data-aos="zoom-in"><a href=" "><i class="fa fa-cubes" aria-hidden="true"></i><span>Stats</span></a></li>
+					</ul>
+				</div>			
+				<div class="content-page"><!--container start-->
+					<div class="wrapper">
+						<div class="block"  data-aos="zoom-in" >
+							 <div id="chart_div" style="width: 100%; height: 450px;"></div>
+						</div>
+
+						<div class="block">
+							  <div id="donut_single" style="width: 300px; height: 500px;"></div>
+						</div>
+						
+						<div class="block">
+							<div id="columnchart_values" style="width: 100%; height: 300px;"></div>
+						</div>	
+						<div class="block">
+							<div id="columnchart_values" style="width: 100%; height: 300px;"></div>
+						</div>	
+
+					</div>
+					
+				</div><!--container closed-->
+			</div><!--inner-wrapper closed-->
+			
+
+			<div id="footer">
+				<div class="container" ><!--container start-->	
+				 <p>jdidedefefefehdiidjiejdijeidjiej</p>
+				</div><!--container closed-->
+			</div>
+		</div><!--outer-wrapper closed-->
+		<!-- <p id="back-top" class="desktop"><a href="#top"><span></span</a></p>	 -->
+		
+		<script type="text/javascript">
+			//Responsive menu toggle code
+			function activateResponsiveNav(){
+				$("#hamburger").click(function(){						
+					$("html").toggleClass("openResponsiveNav");
+					//$("#responsive-nav").toggle();
+				});
+				//Mobile menu Nav icon animation
+				if (typeof document.querySelector("#hamburger").addEventListener=='function'){
+					document.querySelector("#hamburger").addEventListener("click", function(){
+						$(this).find('#nav-toggle')[0].classList.toggle("active");
+						//for change the circle bg color ake
+						// $(this).toggleClass('red');
+					});
+				}
+			};
+
+			$(document).ready(function(){	
+				activateResponsiveNav();
+			});
+		
+			AOS.init({
+		        duration: 1000,
+		         easing: 'ease-in-quad',
+		    });
+		</script>
+
+		<script>
+			var canvas = document.getElementById("barChart");
+			var ctx = canvas.getContext('2d');
+
+			// Global Options:
+			Chart.defaults.global.defaultFontColor = 'black';
+			Chart.defaults.global.defaultFontSize = 16;
+
+			var data = {
+			  labels: ["22 dec", "23 dec", "24 dec", "25 dec", "26 dec", "27 dec", "28 dec", "29 dec"],
+			  datasets: [{
+			      label: "Stock A",
+			      fill: true,
+			      lineTension: 0.1,
+			      backgroundColor: "rgba(80, 205, 225, 0.53)",
+			      borderColor: "rgba(80, 205, 225, 0.53)", // The main line color
+			      borderCapStyle: 'square',
+			      borderDash: [], // try [5, 15] for instance
+			      borderDashOffset: 0.0,
+			      borderJoinStyle: 'miter',
+			      pointBorderColor: "#3dc1d6",
+			      pointBackgroundColor: "white",
+			      pointBorderWidth: 1,
+			      pointHoverRadius: 8,
+			      pointHoverBackgroundColor: "rgba(80, 205, 225, 0.53)",
+			      pointHoverBorderColor: "rgba(80, 205, 225, 0.53)",
+			      pointHoverBorderWidth: 1,
+			      pointRadius: 4,
+			      pointHitRadius: 10,
+			      // notice the gap in the data and the spanGaps: true
+			      data: [65, 59, 80, 81, 56, 55, 40, ,60,55,30,78],
+			      spanGaps: true,
+			    }, {
+			      label: "Stock B",
+			      fill: true,
+			      lineTension: 0.1,
+			      backgroundColor: "#84dae7",
+			      borderColor: "#84dae7",
+			      borderCapStyle: 'round',
+			      borderDash: [],
+			      borderDashOffset: 0.0,
+			      borderJoinStyle: 'miter',
+			      pointBorderColor: "#3dc1d6",
+			      pointBackgroundColor: "white",
+			      pointBorderWidth: 1,
+			      pointHoverRadius: 8,
+			      pointHoverBackgroundColor: "#84dae7",
+			      pointHoverBorderColor: "#84dae7",
+			      pointHoverBorderWidth: 1,
+			      pointRadius: 4,
+			      pointHitRadius: 10,
+			      // notice the gap in the data and the spanGaps: false
+			      data: [65, 15, 60, 95, 64, 78, 90,,70,40,70,89],
+			      spanGaps: true,
+			    }
+
+			  ]
+			};
+
+			// Notice the scaleLabel at the same level as Ticks
+			var options = {
+			  scales: {
+			            xAxes: [{
+			                ticks: {
+			                    beginAtZero:true
+			                },
+			                scaleLabel: {
+			                     display: true,
+			                     labelString: 'Moola',
+			                     fontSize: 20 
+			                  }
+			            }]            
+			        }  
+			};
+
+			// Chart declaration:
+			var myBarChart = new Chart(ctx, {
+			  type: 'line',
+			  data: data,
+			  options: options,
+
+
+			});
+			</script>
+			<!--last grapg-->
+			<script type="text/javascript">
+			  google.charts.load("current", {packages:['corechart']});
+			  google.charts.setOnLoadCallback(drawChart);
+			  function drawChart() {
+		        var data = google.visualization.arrayToDataTable([
+		        ['Language', 'Country', 'Romance', 'Mystery/Crime', 'General',
+		         'Western', 'Literature', { role: 'annotation' } ],
+		        ['2010', 10, 24, 20, 32, 18, 5, ''],
+		        ['2020', 16, 22, 23, 30, 16, 9, ''],
+		        ['2030', 28, 19, 29, 30, 12, 13, '']
+		      ]);
+
+		      var view = new google.visualization.DataView(data);
+		      view.setColumns([0, 1,
+		                       { calc: "stringify",
+		                         // sourceColumn: 2,
+		                         type: "string",
+		                         role: "annotation" },
+		                       2]);
+
+		      var options = {
+		        width: 600,
+		        height: 400,
+		        legend: { position: 'top', maxLines: 3 },
+		        bar: { groupWidth: '75%' },
+		        isStacked: true,
+
+		      };
+		      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+		      chart.draw(view, options);
+		  }
+		  </script>
+		  <!--chart-->
+		  <script type="text/javascript">
+		      google.charts.load('current', {'packages':['corechart']});
+		      google.charts.setOnLoadCallback(drawChart);
+
+		      function drawChart() {
+		        var data = google.visualization.arrayToDataTable([
+		          ['Day', 'Sales', 'Expenses'],
+		          ['22 dec',  400,      400],
+		          ['23 dec',  1170,      560],
+		          ['24 dec',  660,       720],
+		          ['25 dec',  1730,      1140],
+		          ['26 dec',  930,      840],
+		          ['27 dec',  2030,      1840],
+		          ['28 dec',  1230,      1540],
+		          ['29 dec',  1530,      2540]
+		        ]);
+
+
+		        var options = {
+		          title: 'Audience',
+		          hAxis: {title: 'Day', 
+		          		  titleTextStyle: {color: '#333'}
+		          	},
+		          vAxis: {minValue: 0},
+		          backgroundColor: "#edefee",
+		        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+
+    <!--pia chart-->
+     <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Effort', 'Amount given'],
+          ['My all',     90],
+        ]);
+
+        var options = {
+          pieHole: 0.5,
+          pieSliceTextStyle: {
+            color: 'black',
+            pieStartAngle: 100,
+          },
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('donut_single'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script type="text/javascript"></script>
+
+
+	
+	</body>
+</html>
+
